@@ -3,7 +3,6 @@ import logo from "../logo.png";
 function Header() {
     return (
         
-
             <div className="header">
                 <img className="logo" src={logo} alt="logo" />
 
