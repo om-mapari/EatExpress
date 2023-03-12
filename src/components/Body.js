@@ -1,5 +1,5 @@
 import RestrauntCard from "./RestrauntCard";
-import data from "./data.js";
+import { data } from "../constants"
 
 function Body() {
     return (

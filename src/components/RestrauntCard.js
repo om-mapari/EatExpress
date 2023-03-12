@@ -1,11 +1,12 @@
 import React from "react";
+import { IMG_CDN_URL } from "../constants";
 
 function RestrauntCard({ name, cuisines, cloudinaryImageId, avgRating }) {
 
     return (
         <div  className="card">
             <img
-                src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/${cloudinaryImageId}`}
+                src={`${IMG_CDN_URL}/${cloudinaryImageId}`}
                 alt="img"
             />
             <h2>{name}</h2>
