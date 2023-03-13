@@ -35,3 +35,11 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+
+.shimmer-card {
+  width: 200px;
+  height: 280px;
+  background-color: lightgray;
+  margin: 10px;
+}
