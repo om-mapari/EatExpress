@@ -6,7 +6,9 @@ function Header() {
     const [loggedIn, setLoggedIn] = useState(false);
     return (
         <div className="header">
-            <img className="logo" src={logo} alt="logo" />
+            <Link to="/">
+                <img className="logo" src={logo} alt="logo" />
+            </Link>
 
             <div className="nav-items">
                 <ul>

@@ -1,6 +1,6 @@
-import RestrauntCard from "./RestrauntCard";
+import RestrauntCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
-import ShimmerRestrauntCard from "./ShimmerRestrauntCard";
+import ShimmerRestrauntCard from "./ShimmerRestaurantCard";
 
 function Body() {
     const [searchText, setSearchText] = useState("");
@@ -12,7 +12,9 @@ function Body() {
             return restaurants;
         }
         return restaurants.filter((restaurant) =>
-            restaurant?.data?.name?.toLowerCase()?.includes(searchText?.toLowerCase())
+            restaurant?.data?.name
+                ?.toLowerCase()
+                ?.includes(searchText?.toLowerCase())
         );
     }
 
@@ -67,7 +69,7 @@ function Body() {
             </div>
 
             {filteredRestaurant.length === 0 ? (
-                    <h1>No Restraunt match your Filter!!!</h1> 
+                <h1>No Restraunt match your Filter!!!</h1>
             ) : (
                 <div className="restaurant-list">
                     {filteredRestaurant.map((el, i) => (
