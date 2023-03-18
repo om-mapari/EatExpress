@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/eatexpress/static/css/main.65d530c4.css",
+    "main.js": "/eatexpress/static/js/main.64b2f0b4.js",
+    "index.html": "/eatexpress/index.html",
+    "main.65d530c4.css.map": "/eatexpress/static/css/main.65d530c4.css.map",
+    "main.64b2f0b4.js.map": "/eatexpress/static/js/main.64b2f0b4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.65d530c4.css",
+    "static/js/main.64b2f0b4.js"
+  ]
+}
