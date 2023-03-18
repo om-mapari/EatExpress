@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { swiggy_menu_api_URL, IMG_CDN_URL } from "../constants"
+import ShimmerRestrauntCard from "./ShimmerRestaurantCard";
 
 function RestaurantMenu() {
     const { restId } = useParams();
     const [restaurant, setRestaurant] = useState([]);
-    // const [menu,setMenu] = useState([]);
+    const [menu, setMenu] = useState([]);
 
     useEffect(() => {
         getRestaurantInfo();
@@ -15,28 +16,66 @@ function RestaurantMenu() {
     async function getRestaurantInfo() {
         const response = await fetch(swiggy_menu_api_URL + restId);
         const json = await response.json();
-        // console.log(json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
+        // console.log(json?.data?.cards?.[0]?.card?.card?.info);
+        // console.log(json?.data?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
         setRestaurant(json?.data?.cards[0]?.card?.card?.info);
-        // setRestaurant(json);
+        setMenu(json?.data?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
     }
+    menu.forEach((el, idx) => {
+        console.log(el)
+    })
 
-    return (
-        <div>
+
+    return restaurant.length === 0 ? <ShimmerRestrauntCard /> : (
+        <div >
+            <h2>Restraunt id: {restId}</h2>
+            <h2>{restaurant.name}</h2>
+
+            <img src={IMG_CDN_URL + restaurant.cloudinaryImageId} alt="placeholder" height={250} width={350} />
+            <ul>
+                <li><h4>{restaurant?.cuisines?.map((el, idx) => <span key={idx}>{el} </span>)}</h4></li>
+                <li><h4>{restaurant.areaName}</h4></li>
+                <li><h4>{restaurant.avgRating} ⭐</h4></li>
+            </ul>
+
             <div>
-                <h1>Restraunt id: {restId}</h1>
-                <img src={IMG_CDN_URL + restaurant.cloudinaryImageId} alt="placeholder" />
-                <h2>{restaurant.name}</h2>
-                <h4>{restaurant.cuisines.map(el => `${el} `)}</h4>
-                <h4>{restaurant.areaName}</h4>
-                <h4>{restaurant.city}</h4>
-                <h4>{restaurant.avgRating}</h4>
+                {menu.map((el, idx) => {
+                    return (
+                        <div key={idx}>
+                            <h2>{el?.card?.card?.title}</h2>
+                            <div className="restaurant-list">
+                                {
+                                    el?.card?.card?.itemCards?.map((el,) => {
+                                        return (
 
-                {/* <h2>{restaurant.}</h2>
-                <h2>{restaurant.}</h2> */}
+                                            <div key={el?.card?.info?.name} className="card">
+                                                {
+                                                    el?.card?.info?.imageId ? (<img
+                                                        src={IMG_CDN_URL + el?.card?.info?.imageId}
+                                                        alt="noimage"
+                                                    />) : (
+                                                        <img
+                                                            src="https://cdn.dribbble.com/users/1012566/screenshots/4187820/media/985748436085f06bb2bd63686ff491a5.jpg?compress=1&resize=400x300&vertical=top"
+                                                            alt="noimage"
+                                                        />
+                                                    )
+
+                                                }
+
+                                                <h2>{el?.card?.info?.name}</h2>
+                                                <h3>{el?.card?.info?.price / 100} rs</h3>
+                                                <p>{el?.card?.info?.description}</p>
+                                            </div>
+
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                    )
+                })}
 
             </div>
-
-
         </div>
     );
 }

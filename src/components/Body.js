@@ -2,6 +2,7 @@ import RestrauntCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import { swiggy_api_URL } from "../constants"
 import ShimmerRestrauntCard from "./ShimmerRestaurantCard";
+import { Link } from "react-router-dom";
 
 function Body() {
     const [searchText, setSearchText] = useState("");
@@ -72,14 +73,15 @@ function Body() {
             ) : (
                 <div className="restaurant-list">
                     {filteredRestaurant.map((el, i) => (
-                        <RestrauntCard
-                            key={el.data.id}
-                            // name={el.data.name}
-                            // cuisines={el.data.cuisines}
-                            // image={el.data.cloudinaryImageId}
-                            // rating={el.data.avgRating}
-                            {...el.data}
-                        />
+                        <Link to={`restaurant/${el.data.id}`} key={el.data.id} >
+                            <RestrauntCard
+                                // name={el.data.name}
+                                // cuisines={el.data.cuisines}
+                                // image={el.data.cloudinaryImageId}
+                                // rating={el.data.avgRating}
+                                {...el.data}
+                            />
+                        </Link>
                     ))}
                 </div>
             )}
