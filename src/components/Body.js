@@ -3,22 +3,13 @@ import { useState, useEffect } from "react";
 import { swiggy_api_URL } from "../constants"
 import ShimmerRestrauntCard from "./ShimmerRestaurantCard";
 import { Link } from "react-router-dom";
+import {filterData} from "../utils/helper"
 
 function Body() {
     const [searchText, setSearchText] = useState("");
     const [allRestaurants, setAllRestaurants] = useState([]);
     const [filteredRestaurant, setfilteredRestaurant] = useState([]);
 
-    function filterData(searchText, restaurants) {
-        if (searchText === "") {
-            return restaurants;
-        }
-        return restaurants.filter((restaurant) =>
-            restaurant?.data?.name
-                ?.toLowerCase()
-                ?.includes(searchText?.toLowerCase())
-        );
-    }
 
     async function getRestaurants() {
         try {
